@@ -5,7 +5,7 @@ let currentColor = 'black'
 
 
 const sizeButton = document.querySelector('#sizeButton')
-sizeButton.addEventListener('click', handleButtonClick)
+sizeButton.addEventListener('click', handleNewGridSizeClick)
 
 const colorChooseButton = document.querySelector('#chooseColorButton')
 console.log(colorChooseButton)
@@ -90,7 +90,7 @@ function handleChooseColor() {
   currentColorElement.textContent = `Your current color is: ${currentColor}`
 }
 
-function handleButtonClick() {
+function handleNewGridSizeClick() {
   let newSize = Number(prompt('Enter you new grid size.  Less than 100'))
   if (isNaN(newSize)) console.log('nan')
   while(isNaN(newSize) || newSize < 0) {
