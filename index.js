@@ -8,7 +8,6 @@ const sizeButton = document.querySelector('#sizeButton')
 sizeButton.addEventListener('click', handleNewGridSizeClick)
 
 const colorChooseButton = document.querySelector('#chooseColorButton')
-console.log(colorChooseButton)
 colorChooseButton.addEventListener('click', handleChooseColor)
 
 const deleteDrawingButton = document.querySelector('#deleteDrawing')
@@ -17,6 +16,9 @@ deleteDrawingButton.addEventListener('click', handleDeleteDrawing)
 const eraserButton = document.querySelector('#eraserButton')
 eraserButton.addEventListener('click', handleEraserButtonClick)
 
+const gridSizeTextElement = document.querySelector('#gridSize')
+gridSizeTextElement.textContent = `Current Grid: ${currentGridSize} X ${currentGridSize}`
+
 function handleEraserButtonClick() {
   currentColor = 'white';
   const currentColorElement = document.querySelector('#currentColorElement')
@@ -24,8 +26,6 @@ function handleEraserButtonClick() {
   currentColorElement.textContent = `Your current color is: ${currentColor}`
 }
 
-const gridSizeTextElement = document.querySelector('#gridSize')
-gridSizeTextElement.textContent = `Current Grid: ${currentGridSize} X ${currentGridSize}`
 
 function updater(newSize = 16) {
   removeAllChildNodes() // Start with a fresh grid
@@ -61,22 +61,6 @@ function createGrid(size=16) {
 }
 
 function handleMouseEnter() {
-  /*
-  numOfEvents += 1
-  if (this.style.backgroundColor === 'white'){  
-    if (numOfEvents % 10 === 0) {
-      const randomColor = Math.floor(Math.random()*16777215).toString(16);
-      colorString = `#${randomColor}`
-      this.style.backgroundColor = colorString;
-    }
-    else {
-      this.style.backgroundColor = 'black';
-    }
-  }
-  else {
-    return;
-  }
-  */
  this.style.backgroundColor = currentColor;
 }
 
@@ -84,7 +68,6 @@ function handleChooseColor() {
   const randomColor = Math.floor(Math.random()*16777215).toString(16);
   colorString = `#${randomColor}`
   currentColor = colorString
-  console.log(currentColor)
   const currentColorElement = document.querySelector('#currentColorElement')
   currentColorElement.style.color = currentColor
   currentColorElement.textContent = `Your current color is: ${currentColor}`
@@ -92,7 +75,6 @@ function handleChooseColor() {
 
 function handleNewGridSizeClick() {
   let newSize = Number(prompt('Enter you new grid size.  Less than 100'))
-  if (isNaN(newSize)) console.log('nan')
   while(isNaN(newSize) || newSize < 0) {
     newSize = Number(prompt('Enter you new grid size.  Less than 100'))
   }
