@@ -1,3 +1,4 @@
+
 let numOfEvents = 0; // keep track of mouse events
 let currentGridSize = 16;
 let currentColor = 'black'
@@ -12,6 +13,16 @@ colorChooseButton.addEventListener('click', handleChooseColor)
 
 const deleteDrawingButton = document.querySelector('#deleteDrawing')
 deleteDrawingButton.addEventListener('click', handleDeleteDrawing)
+
+const eraserButton = document.querySelector('#eraserButton')
+eraserButton.addEventListener('click', handleEraserButtonClick)
+
+function handleEraserButtonClick() {
+  currentColor = 'white';
+  const currentColorElement = document.querySelector('#currentColorElement')
+  currentColorElement.style.color = currentColor;
+  currentColorElement.textContent = `Your current color is: ${currentColor}`
+}
 
 const gridSizeTextElement = document.querySelector('#gridSize')
 gridSizeTextElement.textContent = `Current Grid: ${currentGridSize} X ${currentGridSize}`
@@ -77,7 +88,6 @@ function handleChooseColor() {
   const currentColorElement = document.querySelector('#currentColorElement')
   currentColorElement.style.color = currentColor
   currentColorElement.textContent = `Your current color is: ${currentColor}`
-
 }
 
 function handleButtonClick() {
@@ -86,13 +96,17 @@ function handleButtonClick() {
   while(isNaN(newSize) || newSize < 0) {
     newSize = Number(prompt('Enter you new grid size.  Less than 100'))
   }
-
-
   createGrid(newSize)
 }
 
 function handleDeleteDrawing() {
   createGrid(currentGridSize)
+  const grid = document.querySelector('#grid')  
+  grid.classList.add('shake')
+  grid.addEventListener('animationend', () => grid.classList.remove('shake'))
 }
 
 createGrid()
+
+
+
